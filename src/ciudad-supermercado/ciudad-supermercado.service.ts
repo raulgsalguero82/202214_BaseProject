@@ -36,6 +36,7 @@ export class CiudadSupermercadoService {
 
     const ciudad: CiudadEntity = await this.ciudadRepository.findOne({
       where: { id: ciudadId },
+      relations: ['supermercados'],
     });
 
     if (!ciudad) {
@@ -44,6 +45,8 @@ export class CiudadSupermercadoService {
         BusinessError.NOT_FOUND,
       );
     }
+
+    if (!ciudad.supermercados) ciudad.supermercados = [];
 
     ciudad.supermercados = [...ciudad.supermercados, supermercado];
 
@@ -57,6 +60,7 @@ export class CiudadSupermercadoService {
   ): Promise<SupermercadoEntity[]> {
     const ciudad: CiudadEntity = await this.ciudadRepository.findOne({
       where: { id: ciudadId },
+      relations: ['supermercados'],
     });
 
     if (!ciudad) {
@@ -71,10 +75,11 @@ export class CiudadSupermercadoService {
 
   async updateSupermarketsFromCity(
     ciudadId: string,
-    supermercadoIds: string[],
+    supermercados: SupermercadoEntity[],
   ): Promise<CiudadEntity> {
     const ciudad: CiudadEntity = await this.ciudadRepository.findOne({
       where: { id: ciudadId },
+      relations: ['supermercados'],
     });
 
     if (!ciudad) {
@@ -85,10 +90,10 @@ export class CiudadSupermercadoService {
     }
 
     ciudad.supermercados = [];
-    for (let i = 0; i < supermercadoIds.length; i++) {
+    for (let i = 0; i < supermercados.length; i++) {
       const supermercado: SupermercadoEntity =
         await this.supermercadoRepository.findOne({
-          where: { id: supermercadoIds[i] },
+          where: { id: supermercados[i].id },
         });
 
       if (!supermercado) {
@@ -122,6 +127,7 @@ export class CiudadSupermercadoService {
 
     const ciudad: CiudadEntity = await this.ciudadRepository.findOne({
       where: { id: ciudadId },
+      relations: ['supermercados'],
     });
 
     if (!ciudad) {
@@ -130,6 +136,8 @@ export class CiudadSupermercadoService {
         BusinessError.NOT_FOUND,
       );
     }
+
+    if (!ciudad.supermercados) ciudad.supermercados = [];
 
     ciudad.supermercados = ciudad.supermercados.filter(
       (_supermercado) => _supermercado.id != supermercado.id,

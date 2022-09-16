@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import { CiudadSupermercadoService } from './ciudad-supermercado.service';
 import { TypeOrmTestingConfig } from '../shared/test-utils/typeorm-testing-config';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { BusinessError } from '../shared/errors/business-errors';
 
 describe('CiudadSupermercadoService', () => {
   let service: CiudadSupermercadoService;
@@ -28,6 +29,7 @@ describe('CiudadSupermercadoService', () => {
           min: 1,
           max: 2000000,
         }),
+        supermercados: [],
       });
       ciudadList.push(ciudad);
     }
@@ -44,6 +46,7 @@ describe('CiudadSupermercadoService', () => {
           latitud: parseFloat(faker.address.latitude()),
           longitud: parseFloat(faker.address.longitude()),
           url: faker.internet.url(),
+          ciudades: [],
         });
       supermercadoList.push(supermercado);
     }
@@ -71,5 +74,111 @@ describe('CiudadSupermercadoService', () => {
 
   it('should be defined', () => {
     expect(service).toBeDefined();
+  });
+
+  it('Add supermercado to city', async () => {
+    const savedCity = await service.addSupermarketToCity(
+      ciudadList[0].id,
+      supermercadoList[0].id,
+    );
+    expect(savedCity.supermercados.length).toBe(1);
+    expect(savedCity.supermercados[0].id).toBe(supermercadoList[0].id);
+  });
+
+  it('Add supermercado to non existing city', async () => {
+    await expect(() =>
+      service.addSupermarketToCity('0', supermercadoList[0].id),
+    ).rejects.toHaveProperty('type', BusinessError.NOT_FOUND);
+  });
+
+  it('Add non existing supermercado to city', async () => {
+    await expect(() =>
+      service.addSupermarketToCity(ciudadList[0].id, '0'),
+    ).rejects.toHaveProperty('type', BusinessError.NOT_FOUND);
+  });
+
+  it('Find supermercados from city', async () => {
+    await service.addSupermarketToCity(
+      ciudadList[0].id,
+      supermercadoList[0].id,
+    );
+
+    const supermercados = await service.findSupermarketsFromCity(
+      ciudadList[0].id,
+    );
+
+    expect(supermercados.length).toBe(1);
+    expect(supermercados[0].id).toBe(supermercadoList[0].id);
+  });
+
+  it('Find supermercados from non existing city', async () => {
+    await expect(() =>
+      service.findSupermarketsFromCity('0'),
+    ).rejects.toHaveProperty('type', BusinessError.NOT_FOUND);
+  });
+
+  it('Update supermercados from city', async () => {
+    const ciudad = await service.updateSupermarketsFromCity(
+      ciudadList[0].id,
+      supermercadoList,
+    );
+
+    expect(ciudad.supermercados.length).toBe(supermercadoList.length);
+  });
+
+  it('Update supermercados from non existing city', async () => {
+    await expect(() =>
+      service.updateSupermarketsFromCity('0', supermercadoList),
+    ).rejects.toHaveProperty('type', BusinessError.NOT_FOUND);
+  });
+
+  it('Update non existing supermercados from city', async () => {
+    supermercadoList[0].id = '0';
+
+    await expect(() =>
+      service.updateSupermarketsFromCity(ciudadList[0].id, supermercadoList),
+    ).rejects.toHaveProperty('type', BusinessError.NOT_FOUND);
+  });
+
+  it('Delete supermercado from city', async () => {
+    let ciudad: CiudadEntity = await service.addSupermarketToCity(
+      ciudadList[0].id,
+      supermercadoList[0].id,
+    );
+
+    expect(ciudad.supermercados.length).toBe(1);
+
+    ciudad = await service.deleteSupermarketFromCity(
+      ciudadList[0].id,
+      supermercadoList[0].id,
+    );
+
+    expect(ciudad.supermercados.length).toBe(0);
+  });
+
+  it('Delete supermercado from non existing city', async () => {
+    const ciudad: CiudadEntity = await service.addSupermarketToCity(
+      ciudadList[0].id,
+      supermercadoList[0].id,
+    );
+
+    expect(ciudad.supermercados.length).toBe(1);
+
+    await expect(() =>
+      service.deleteSupermarketFromCity('0', supermercadoList[0].id),
+    ).rejects.toHaveProperty('type', BusinessError.NOT_FOUND);
+  });
+
+  it('Delete non existing supermercado from city', async () => {
+    const ciudad: CiudadEntity = await service.addSupermarketToCity(
+      ciudadList[0].id,
+      supermercadoList[0].id,
+    );
+
+    expect(ciudad.supermercados.length).toBe(1);
+
+    await expect(() =>
+      service.deleteSupermarketFromCity('0', supermercadoList[0].id),
+    ).rejects.toHaveProperty('type', BusinessError.NOT_FOUND);
   });
 });
