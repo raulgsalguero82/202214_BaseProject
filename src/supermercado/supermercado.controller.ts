@@ -35,9 +35,10 @@ export class SupermercadoController {
     return await this.service.create(entity);
   }
 
-  @Put()
-  async update(@Body() entityDto: SupermercadoDto) {
+  @Put(':id')
+  async update(@Param('id') id: string, @Body() entityDto: SupermercadoDto) {
     const entity = plainToInstance(SupermercadoEntity, entityDto);
+    entity.id = id;
     return await this.service.update(entity);
   }
 

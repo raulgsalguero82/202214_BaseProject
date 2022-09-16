@@ -36,9 +36,10 @@ export class CiudadController {
     return await this.service.create(entity);
   }
 
-  @Put()
-  async update(@Body() entityDto: CiudadDto) {
+  @Put(':id')
+  async update(@Param('id') id: string, @Body() entityDto: CiudadDto) {
     const entity = plainToInstance(CiudadEntity, entityDto);
+    entity.id = id;
     return await this.service.update(entity);
   }
 

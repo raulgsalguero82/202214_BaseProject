@@ -1,0 +1,441 @@
+{
+	"info": {
+		"_postman_id": "e5e4f671-a706-4840-868c-1e05992364e5",
+		"name": "Supermercado",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6393143"
+	},
+	"item": [
+		{
+			"name": "Crear una supermercado valido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"supermercadoId\", data.id);\r",
+							"\r",
+							"pm.test(\"Crear una supermercado valido: Status code es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \r\n    \"nombre\" : \"NombreDelSupermercaod\" ,\r\n    \"latitud\" : 0.0 ,\r\n    \"longitud\" : 0.0 ,\r\n    \"url\" : \"http://thisIsATest.com/index.html\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/supermarkets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"supermarkets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un supermercado invalido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Crear un supermercado invalido: Status code es 400\", function () {\r",
+							"   pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \r\n    \"nombre\" : \"Nomb\" ,\r\n    \"latitud\" : 0.0 ,\r\n    \"longitud\" : 0.0 ,\r\n    \"url\" : \"http://thisIsATest.com/index.html\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/supermarkets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"supermarkets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los supermercados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"\r",
+							"pm.test(\"Obtener todos los supermercados: Status code es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/supermarkets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"supermarkets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un supermercado por id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"\r",
+							"pm.test(\"Obtener un supermercado por id: Status code es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/supermarkets/{{supermercadoId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"supermarkets",
+						"{{supermercadoId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un supermercado por un id que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"\r",
+							"pm.test(\"Obtener un supermercado por un id que no existe: Status code es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/supermarkets/00000000-0000-0000-0000-000000000000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"supermarkets",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un supermercado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"\r",
+							"pm.test(\"Actualizar un supermercado: Status code es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \r\n    \"nombre\" : \"NuevoNombreDelSupermercaod\" ,\r\n    \"latitud\" : 0.0 ,\r\n    \"longitud\" : 0.0 ,\r\n    \"url\" : \"http://thisIsATest.com/index.html\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/supermarkets/{{supermercadoId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"supermarkets",
+						"{{supermercadoId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar un supermercado con un id que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"\r",
+							"pm.test(\"Actualizar un supermercado con un id que no existe: Status code es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \r\n    \"nombre\" : \"NuevoNombreDelSupermercaod\" ,\r\n    \"latitud\" : 0.0 ,\r\n    \"longitud\" : 0.0 ,\r\n    \"url\" : \"http://thisIsATest.com/index.html\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/supermarkets/00000000-0000-0000-0000-000000000000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"supermarkets",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un supermercado por su ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Eliminar un supermercado por su ID: Status code es 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/supermarkets/{{supermercadoId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"supermarkets",
+						"{{supermercadoId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un supermercado con un ID que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Eliminar un supermercado con un ID que no existe: Status code es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/supermarkets/00000000-0000-0000-0000-000000000000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"supermarkets",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

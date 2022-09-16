@@ -1,16 +1,23 @@
-import { IsNotEmpty, IsNumber, IsString, IsUrl } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  IsUrl,
+} from 'class-validator';
 
 export class SupermercadoDto {
+  @IsOptional()
+  id: string;
+
   @IsString()
   @IsNotEmpty()
   nombre: string;
 
   @IsNumber()
-  @IsNotEmpty()
   latitud: number;
 
   @IsNumber()
-  @IsNotEmpty()
   longitud: number;
 
   @IsUrl()

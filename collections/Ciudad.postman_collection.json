@@ -1,0 +1,441 @@
+{
+	"info": {
+		"_postman_id": "03940a95-58eb-4f28-8c60-bf329f82613b",
+		"name": "Ciudad",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6393143"
+	},
+	"item": [
+		{
+			"name": "Crear una ciudad valida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"ciudadId\", data.id);\r",
+							"\r",
+							"pm.test(\"Crear una ciudad valida: Status code es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \r\n    \"nombre\" : \"NombreCiudad\" ,\r\n    \"pais\" : \"Argentina\" ,\r\n    \"habitantes\" : 30000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una ciudad invalida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Crear una ciudad invalida: Status code es 400\", function () {\r",
+							"   pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\" : \"NombreCiudad\" ,\r\n    \"pais\" : \"Nigeria\" ,\r\n    \"habitantes\" : 30000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todas las ciudades",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"\r",
+							"pm.test(\"Obtener todas las ciudades: Status code es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una ciudades por id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"\r",
+							"pm.test(\"Obtener una ciudad por id: Status code es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities/{{ciudadId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"{{ciudadId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener una ciudad por un id que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"\r",
+							"pm.test(\"Obtener una ciudad por un id que no existe: Status code es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities/00000000-0000-0000-0000-000000000000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"\r",
+							"pm.test(\"Actualizar una ciudad: Status code es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{      \r\n    \"nombre\" : \"Nuevo NombreCiudad\" ,\r\n    \"pais\" : \"Argentina\" ,\r\n    \"habitantes\" : 30000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities/{{ciudadId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"{{ciudadId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar una ciudad con un id que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"\r",
+							"pm.test(\"Actualizar una ciudad con un id que no existe: Status code es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{      \r\n    \"nombre\" : \"Nuevo NombreCiudad\" ,\r\n    \"pais\" : \"Argentina\" ,\r\n    \"habitantes\" : 30000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities/00000000-0000-0000-0000-000000000000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar una ciudad por su ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Eliminar una ciudad por su ID: Status code es 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities/{{ciudadId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"{{ciudadId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar una ciudad con un ID que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Eliminar una ciudad con un ID que no existe: Status code es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities/00000000-0000-0000-0000-000000000000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

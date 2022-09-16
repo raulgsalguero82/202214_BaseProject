@@ -34,11 +34,11 @@ export class SupermercadoService {
   async create(supermercado: SupermercadoEntity): Promise<SupermercadoEntity> {
     if (supermercado.nombre.length < 10) {
       throw new BusinessLogicException(
-        'Pais no valido',
+        'Nombre demasiado corto',
         BusinessError.BAD_REQUEST,
       );
     }
-    return await this.supermercadoRepository.create(supermercado);
+    return await this.supermercadoRepository.save(supermercado);
   }
 
   async update(supermercado: SupermercadoEntity): Promise<SupermercadoEntity> {
@@ -55,7 +55,7 @@ export class SupermercadoService {
 
     if (supermercado.nombre.length < 10) {
       throw new BusinessLogicException(
-        'Pais no valido',
+        'Nombre demasiado corto',
         BusinessError.BAD_REQUEST,
       );
     }

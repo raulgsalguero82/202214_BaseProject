@@ -195,6 +195,22 @@ describe('CiudadSupermercadoService', () => {
     ).rejects.toHaveProperty('type', BusinessError.NOT_FOUND);
   });
 
+  it('Delete not assigned supermercado from city', async () => {
+    const ciudad: CiudadEntity = await service.addSupermarketToCity(
+      ciudadList[0].id,
+      supermercadoList[0].id,
+    );
+
+    expect(ciudad.supermercados.length).toBe(1);
+
+    await expect(() =>
+      service.deleteSupermarketFromCity(
+        ciudadList[0].id,
+        supermercadoList[1].id,
+      ),
+    ).rejects.toHaveProperty('type', BusinessError.BAD_REQUEST);
+  });
+
   it('Delete non existing supermercado from city', async () => {
     const ciudad: CiudadEntity = await service.addSupermarketToCity(
       ciudadList[0].id,

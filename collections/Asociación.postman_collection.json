@@ -1,0 +1,641 @@
+{
+	"info": {
+		"_postman_id": "ed906106-a9ea-40c4-855f-8431220c3974",
+		"name": "Asociación",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6393143"
+	},
+	"item": [
+		{
+			"name": "Crear una ciudad valida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"ciudadId\", data.id);\r",
+							"\r",
+							"pm.test(\"Crear una ciudad valida: Status code es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \r\n    \"nombre\" : \"NombreCiudad\" ,\r\n    \"pais\" : \"Argentina\" ,\r\n    \"habitantes\" : 30000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una supermercado valido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"supermercadoId\", data.id);\r",
+							"\r",
+							"pm.test(\"Crear una supermercado valido: Status code es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \r\n    \"nombre\" : \"NombreDelSupermercaod\" ,\r\n    \"latitud\" : 0.0 ,\r\n    \"longitud\" : 0.0 ,\r\n    \"url\" : \"http://thisIsATest.com/index.html\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/supermarkets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"supermarkets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una supermercado valido2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"supermercadoId2\", data.id);\r",
+							"\r",
+							"pm.test(\"Crear una supermercado valido: Status code es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \r\n    \"nombre\" : \"NombreDelSupermercaod\" ,\r\n    \"latitud\" : 0.0 ,\r\n    \"longitud\" : 0.0 ,\r\n    \"url\" : \"http://thisIsATest.com/index.html\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/supermarkets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"supermarkets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una supermercado valido3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"supermercadoId3\", data.id);\r",
+							"\r",
+							"pm.test(\"Crear una supermercado valido: Status code es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \r\n    \"nombre\" : \"NombreDelSupermercaod\" ,\r\n    \"latitud\" : 0.0 ,\r\n    \"longitud\" : 0.0 ,\r\n    \"url\" : \"http://thisIsATest.com/index.html\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/supermarkets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"supermarkets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar un nuevo supermercado a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Asociar un nuevo supermercado a una ciudad: Status code es 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \r\n    \"nombre\" : \"NombreCiudad\" ,\r\n    \"pais\" : \"Argentina\" ,\r\n    \"habitantes\" : 30000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities/{{ciudadId}}/supermarkets/{{supermercadoId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"{{ciudadId}}",
+						"supermarkets",
+						"{{supermercadoId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar un supermercado que no existe a una ciudad.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Asociar un supermercado que no existe a una ciudad: Status code es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \r\n    \"nombre\" : \"NombreCiudad\" ,\r\n    \"pais\" : \"Argentina\" ,\r\n    \"habitantes\" : 30000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities/{{ciudadId}}/supermarkets/00000000-0000-0000-0000-000000000000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"{{ciudadId}}",
+						"supermarkets",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los supermercados que pertenecen a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Obtener todos los supermercados que pertenecen a una ciudad: Status code es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities/{{ciudadId}}/supermarkets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"{{ciudadId}}",
+						"supermarkets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un supermercado asociado a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Obtener un supermercado asociado a una ciudad: Status code es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities/{{ciudadId}}/supermarkets/{{supermercadoId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"{{ciudadId}}",
+						"supermarkets",
+						"{{supermercadoId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un supermercado que no está asociado a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Obtener un supermercado que no está asociado a una ciudad: Status code es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities/{{ciudadId}}/supermarkets/{{supermercadoId2}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"{{ciudadId}}",
+						"supermarkets",
+						"{{supermercadoId2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar los supermercados que están asociados a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Actualizar los supermercados que están asociados a una ciudad: Status code es 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {    \r\n        \"id\": \"{{supermercadoId}}\",\r\n        \"nombre\" : \"NombreDelSupermercaod\" ,\r\n        \"latitud\" : 0.0 ,\r\n        \"longitud\" : 0.0 ,\r\n        \"url\" : \"http://thisIsATest.com/index.html\"\r\n    },\r\n    {    \r\n        \"id\": \"{{supermercadoId2}}\",\r\n        \"nombre\" : \"NombreDelSupermercaod\" ,\r\n        \"latitud\" : 0.0 ,\r\n        \"longitud\" : 0.0 ,\r\n        \"url\" : \"http://thisIsATest.com/index.html\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities/{{ciudadId}}/supermarkets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"{{ciudadId}}",
+						"supermarkets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar los supermercados asociados a una ciudad, con un supermercado inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Actualizar los supermercados asociados a una ciudad, con un supermercado inexistente: Status code es 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {    \r\n        \"id\": \"{{supermercadoId}}\",\r\n        \"nombre\" : \"NombreDelSupermercaod\" ,\r\n        \"latitud\" : 0.0 ,\r\n        \"longitud\" : 0.0 ,\r\n        \"url\" : \"http://thisIsATest.com/index.html\"\r\n    },\r\n    {    \r\n        \"id\": \"00000000-0000-0000-0000-000000000000\",\r\n        \"nombre\" : \"NombreDelSupermercaod\" ,\r\n        \"latitud\" : 0.0 ,\r\n        \"longitud\" : 0.0 ,\r\n        \"url\" : \"http://thisIsATest.com/index.html\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities/{{ciudadId}}/supermarkets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"{{ciudadId}}",
+						"supermarkets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un supermercado asociado a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Eliminar un supermercado asociado a una ciudad: Status code es 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities/{{ciudadId}}/supermarkets/{{supermercadoId2}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"{{ciudadId}}",
+						"supermarkets",
+						"{{supermercadoId2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un supermercado que no estaba previamente asociado a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Eliminar un supermercado que no estaba previamente asociado a una ciudad: Status code es 400\", function () {\r",
+							"   pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/v1/cities/{{ciudadId}}/supermarkets/{{supermercadoId3}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"{{ciudadId}}",
+						"supermarkets",
+						"{{supermercadoId3}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

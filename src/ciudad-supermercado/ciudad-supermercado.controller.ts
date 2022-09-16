@@ -6,6 +6,7 @@ import {
   HttpCode,
   Param,
   Post,
+  Put,
   UseInterceptors,
 } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
@@ -40,7 +41,7 @@ export class CiudadSupermercadoController {
     return await this.service.findSupermarketFromCity(ciudadId, supermercadoId);
   }
 
-  @Post(':ciudadId/supermarkets')
+  @Put(':ciudadId/supermarkets')
   async updateSupermarketsFromCity(
     @Param('ciudadId') ciudadId: string,
     @Body() entityDto: SupermercadoDto[],

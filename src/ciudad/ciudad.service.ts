@@ -39,8 +39,8 @@ export class CiudadService {
         BusinessError.BAD_REQUEST,
       );
     }
-
-    return await this.ciduadRepository.create(ciudad);
+    const savedCiudad = await this.ciduadRepository.save(ciudad);
+    return savedCiudad;
   }
 
   async update(ciudad: CiudadEntity): Promise<CiudadEntity> {

@@ -169,6 +169,17 @@ export class CiudadSupermercadoService {
 
     if (!ciudad.supermercados) ciudad.supermercados = [];
 
+    const assigned_supermercado = ciudad.supermercados.find(
+      (_supermercado) => _supermercado.id == supermercadoId,
+    );
+
+    if (!assigned_supermercado) {
+      throw new BusinessLogicException(
+        'No encontrado',
+        BusinessError.BAD_REQUEST,
+      );
+    }
+
     ciudad.supermercados = ciudad.supermercados.filter(
       (_supermercado) => _supermercado.id != supermercado.id,
     );
