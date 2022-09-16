@@ -117,6 +117,32 @@ describe('CiudadSupermercadoService', () => {
     ).rejects.toHaveProperty('type', BusinessError.NOT_FOUND);
   });
 
+  it('Find supermercado from city', async () => {
+    await service.addSupermarketToCity(
+      ciudadList[0].id,
+      supermercadoList[0].id,
+    );
+
+    const supermercado = await service.findSupermarketFromCity(
+      ciudadList[0].id,
+      supermercadoList[0].id,
+    );
+
+    expect(supermercado.id).toBe(supermercadoList[0].id);
+  });
+
+  it('Find supermercados from non existing city', async () => {
+    await expect(() =>
+      service.findSupermarketFromCity('0', supermercadoList[0].id),
+    ).rejects.toHaveProperty('type', BusinessError.NOT_FOUND);
+  });
+
+  it('Find non exising supermercado from city', async () => {
+    await expect(() =>
+      service.findSupermarketFromCity(ciudadList[0].id, '0'),
+    ).rejects.toHaveProperty('type', BusinessError.NOT_FOUND);
+  });
+
   it('Update supermercados from city', async () => {
     const ciudad = await service.updateSupermarketsFromCity(
       ciudadList[0].id,

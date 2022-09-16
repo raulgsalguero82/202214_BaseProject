@@ -73,6 +73,36 @@ export class CiudadSupermercadoService {
     return ciudad.supermercados;
   }
 
+  async findSupermarketFromCity(
+    ciudadId: string,
+    supermercadoId: string,
+  ): Promise<SupermercadoEntity> {
+    const ciudad: CiudadEntity = await this.ciudadRepository.findOne({
+      where: { id: ciudadId },
+      relations: ['supermercados'],
+    });
+
+    if (!ciudad) {
+      throw new BusinessLogicException(
+        'No encontrado',
+        BusinessError.NOT_FOUND,
+      );
+    }
+
+    const supermercado = ciudad.supermercados.find(
+      (_supermercado) => _supermercado.id == supermercadoId,
+    );
+
+    if (!supermercado) {
+      throw new BusinessLogicException(
+        'No encontrado',
+        BusinessError.NOT_FOUND,
+      );
+    }
+
+    return supermercado;
+  }
+
   async updateSupermarketsFromCity(
     ciudadId: string,
     supermercados: SupermercadoEntity[],
